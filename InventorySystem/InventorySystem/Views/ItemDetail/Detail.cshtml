@@ -1,0 +1,38 @@
+﻿@model InventorySystem.Models.Inventory
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="detail">
+    <table class="table table-bordered ">
+        <tbody>
+          <tr>
+                <td class="bolder">
+                    @Html.DisplayNameFor(model => model.Name)
+                </td>
+                <td>
+                    @Model.Name
+                </td>
+            </tr>
+            <tr>
+                <td class="bolder">
+                    @Html.DisplayNameFor(model => model.Description)
+                </td>
+                <td>
+                    @Model.Description
+                </td>
+            </tr>
+            <tr>
+                <td class="bolder">
+                    @Html.DisplayNameFor(model => model.Price)
+                </td>
+                <td>
+                    @Model.Price
+                </td>
+            </tr>
+        </tbody>
+      </table>
+</div>
+<div class="navigate-back bolder">
+    <a href='@Url.Action("Index","Inventory")'>Click here to return back</a>
+</div>

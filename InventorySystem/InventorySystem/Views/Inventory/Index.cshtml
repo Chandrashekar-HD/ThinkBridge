@@ -1,0 +1,103 @@
+﻿@model IEnumerable<InventorySystem.Models.Inventory>
+
+@{
+    ViewBag.Title = "Create";
+}
+<div ID="errorMessage" class="alert alert-warning error-message" ></div>
+<div class="form-horizontal center">
+    <table>
+        <caption><h3>Create Inventory</h3></caption>
+        <tbody>
+            
+            <tr>
+                <div class="form-group" align="left" valign="top">
+                    <td colspan="3" class="p-3">
+                        <asp-label>Name:</asp-label>
+                    </td>
+                    <td colspan="3" align="left" valign="top" class="p-3">
+                        <div class="col-md-10">
+                            <input type="text" id="name" class="form-control" required />
+                        </div>
+                    </td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <td colspan="3" class="p-3">
+                        <asp-label>Description:</asp-label>
+                    </td>
+                    <td colspan="3" class="p-3">
+                        <div class="col-md-10">
+                            <input type="text" id="description" class="form-control" required />
+                        </div>
+                    </td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <td colspan="3" class="p-3">
+                        <asp-label>Price:</asp-label>
+                    </td>
+                    <td colspan="3" class="p-3">
+                        <div class="col-md-10">
+                            <input type="number" id="price" class="form-control" min="1" required />
+                        </div>
+                    </td>
+                </div>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <td colspan="3" class="p-3"></td>
+                    <td colspan="3" class="p-3">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="Add Item" class="btn btn-default" onclick="create()" />
+                        </div>
+                    </td>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="center">
+     <table class="table" id="InventoryList">
+        <caption><h3>Item List</h3></caption>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                    <td>
+                        <a href='@Url.Action("Detail","ItemDetail", new { id = item.ID })'>Details</a>
+                        <button class="btn btn-default" ID="@item.ID" onclick="removeItemFromList(this.id)" style="margin-left:7px">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                   
+
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
